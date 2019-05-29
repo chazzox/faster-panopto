@@ -9,14 +9,13 @@ let playerSpeed = document.getElementById('speedVal');
 //     playerSpeed = data.speed;
 // });
 
+playerSpeed.setAttribute("autocomplete", "off");
+
 
 changeSpeed.onclick = function(element) {
+    console.log(playerSpeed);
     chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
-        // Passes the playerSpeed into
-        chrome.tabs.executeScript(tabs[0].id, {code: 'var playerSpeed = ' + playerSpeed}, 
-        // nested
-        function() {
-            chrome.tabs.executeScript(tabs[0].id, {file: 'updateSpeed.js'});
-        });
+        chrome.tabs.executeScript(tabs[0].id, {code: 'document.getElementsByTagName("video")[0].playbackRate = ' + playerSpeed.value});
+        chrome.tabs.executeScript(tabs[0].id, {code: 'document.getElementsByTagName("video")[1].playbackRate = ' + playerSpeed.value});
     });
 }
