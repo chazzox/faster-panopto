@@ -1,13 +1,7 @@
 let changeSpeed = document.getElementById('changeSpeed');
-
 let videoPlayer1 = document.getElementsByTagName("video")[0];
 let videoPlayer2 = document.getElementsByTagName("video")[1];
 let playerSpeed = document.getElementById('speedVal');
-
-// // Get the saved player speed from storage
-// chrome.storage.sync.get('speed', function(data) {
-//     playerSpeed = data.speed;
-// });
 
 playerSpeed.setAttribute("autocomplete", "off");
 
