@@ -2,20 +2,31 @@
 <html>
   <head>
     <style>
-      button {
+      #input {
+        width: 150px;
+      }
+      #button {
         height: 40px;
         width: 80px;
         outline: none;
       }
+      #speedValField {
+        width: 40px;
+        float:left;
+      }
     </style>
   </head>
   <body>
-    Stuttering? Hit pause and play.
-    <form id="speedForm" autocomplete="off">
-        <input id="speedVal" type="text" name="speed" value="1.0">
-    </form>
-    <div align="center">
+
+    <div id="input">
+      Stuttering? Try pausing.
+      <div id="inputFields">
+        <input id="speedValField" type="number" name="speed" value="1" step="0.1">
+      </div>
+      <div align="center" id="setterButton">
         <button type="button" id="changeSpeed">Set speed</button>
+      </div>
+
     </div>
     <a href="https://paypal.me/rellikolbaid">Donate</a>
 
