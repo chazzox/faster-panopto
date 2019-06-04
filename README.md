@@ -1,5 +1,6 @@
 # fast-panopto
 Chrome extension to allow for Panopto speeds outside of the given values.
+
 Chrome web store link: https://chrome.google.com/webstore/detail/fast-panopto/bginlheikaacjjdajifcbakcmfcgmefh
 
 Changelog:
