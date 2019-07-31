@@ -3,20 +3,38 @@
   <head>
     <style>
       body {
-        width: 160px;
+        width: 150px;
         height: 100px;
+      }
+      #title {
+        text-align: center;
+        color: #e8e3d3;
+        background-color: #4b2e83;
       }
       #input {
         width: 150px;
       }
-      #button {
-        height: 40px;
-        width: 80px;
+      button {
+        height: 20px;
+        width: 100px;
         outline: none;
+      }
+      #dlButtonLeft {
+        font-size: 10px;
+      }
+      #dlButtonRight {
+        font-size: 10px;
       }
       #speedValField {
         width: 40px;
         float:left;
+      }
+      #downloads {
+        position: absolute;
+      }
+      #donateUrl {
+        position: absolute;
+        bottom: 0;
       }
       #husky {
         width: 50px;
@@ -28,24 +46,29 @@
     </style>
   </head>
   <body>
+    <div id="title">
+        Fast Panopto v1.20
+    </div>
     <div id="input">
-      Stuttering? Try pausing.
       <div id="inputFields">
         <input id="speedValField" type="number" name="speed" value="1" step="0.1">
       </div>
       <div align="center" id="setterButton">
         <button type="button" id="changeSpeed">Set speed</button>
       </div>
-
     </div>
     <div id="downloads">
-      Download videos:
+      Download video:
       <div id="dlButtons">
-        <button type="button" id="dlButtonLeft">Download Left </button>
-        <button type="button" id="dlButtonRight">Download Right</button>
+        <button type="button" id="dlButtonLeft">Download left</button>
+        <!--
+        <button type="button" id="dlButtonRight">Download right</button> 
+        -->
       </div>
     </div>
-    <a href="https://paypal.me/rellikolbaid" target="_blank">Donate</a>
+    <div id=donateUrl>
+        <a href="https://paypal.me/rellikolbaid" target="_blank">Donate</a>
+    </div>
     <img id="husky" src="/images/husky.png">
 
     <script src="popup.js"></script>

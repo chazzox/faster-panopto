@@ -1,14 +1,21 @@
 # fast-panopto
 Chrome extension to allow for Panopto speeds outside of the given values.
+Since version 1.20: Allows downloading of the video of the front of the room.
+Unfortunately, due to the nature of the way the side video delivered to users, it is a non-trivial task to implement downloading for it and would take a serious time investment or additional libraries to figure out, so I'm leaving that out at this time.
+
+Future feature ideas:
+Ability to download all the slide thumbnails
 
 Chrome web store link: https://chrome.google.com/webstore/detail/fast-panopto/bginlheikaacjjdajifcbakcmfcgmefh
 
 Changelog:
 * 1.2
   - Fixed bug where interface was accessible outside of a video player page
+  - Fixed bug where video would stutter if user doesn't pause and unpause after changing speed.
   - Added enter key form entry for the speed field
-  - Added download buttons for the videos
-  - Added a little husky icon
+  - Added a download button for one of the videos
+  - Interface aesthetic upgrades
+  - Donate button now actually opens a tab when clicked
 * 1.15
   - Further improved interface (more compact!)
   - Persistent input value; no longer wipes the value as soon as you exit the popup menu.

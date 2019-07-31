@@ -5,9 +5,14 @@
   "permissions": ["activeTab", "declarativeContent", "storage", "downloads"],
   "background": {
     "scripts": ["background.js"],
-
     "persistent":false
   },
+  "content_scripts": [
+    {
+      "matches": ["*://*.panopto.com/*"],
+      "js": ["pageDOMParser.js"]
+    }
+  ],
   "page_action": {
     "default_popup": "popup.html",
     "default_icon": {
