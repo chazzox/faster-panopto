@@ -9,7 +9,9 @@ Ability to download all the slide thumbnails
 Chrome web store link: https://chrome.google.com/webstore/detail/fast-panopto/bginlheikaacjjdajifcbakcmfcgmefh
 
 Changelog:
-* 1.2
+* 1.21
+  - Changed donate link to a fancy Paypal button
+* 1.20
   - Fixed bug where interface was accessible outside of a video player page
   - Fixed bug where video would stutter if user doesn't pause and unpause after changing speed.
   - Added enter key form entry for the speed field
