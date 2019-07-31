@@ -2,6 +2,10 @@
 <html>
   <head>
     <style>
+      body {
+        width: 160px;
+        height: 100px;
+      }
       #input {
         width: 150px;
       }
@@ -14,10 +18,16 @@
         width: 40px;
         float:left;
       }
+      #husky {
+        width: 50px;
+        height: 50px;
+        position:absolute;
+        bottom:0;
+        right:0;
+      }
     </style>
   </head>
   <body>
-
     <div id="input">
       Stuttering? Try pausing.
       <div id="inputFields">
@@ -28,7 +38,15 @@
       </div>
 
     </div>
-    <a href="https://paypal.me/rellikolbaid">Donate</a>
+    <div id="downloads">
+      Download videos:
+      <div id="dlButtons">
+        <button type="button" id="dlButtonLeft">Download Left </button>
+        <button type="button" id="dlButtonRight">Download Right</button>
+      </div>
+    </div>
+    <a href="https://paypal.me/rellikolbaid" target="_blank">Donate</a>
+    <img id="husky" src="/images/husky.png">
 
     <script src="popup.js"></script>
   </body>

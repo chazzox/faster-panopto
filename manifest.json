@@ -1,8 +1,8 @@
 {
   "name": "Fast Panopto",
-  "version": "1.15",
+  "version": "1.2",
   "description": "Allows user to choose a video speed beyond the defaults allowed by Panopto.",
-  "permissions": ["activeTab", "declarativeContent", "storage"],
+  "permissions": ["activeTab", "declarativeContent", "storage", "downloads"],
   "background": {
     "scripts": ["background.js"],
 
