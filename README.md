@@ -6,7 +6,7 @@ Unfortunately, due to the nature of the way the side video delivered to users, i
 Considering for future updates:
 Ability to download all the slide thumbnails
 
-<img src="https://i.imgur.com/EBTCA0C.png">
+<img src="https://i.imgur.com/Rwu2Bht.png">
 
 <a href="https://chrome.google.com/webstore/detail/fast-panopto/bginlheikaacjjdajifcbakcmfcgmefh">Download</a> and install from the Chrome web store or download the source and import into Chrome extensions locally.
 
