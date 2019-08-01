@@ -3,6 +3,8 @@ Chrome extension to allow for Panopto speeds outside of the given values.
 Since version 1.20: Allows downloading of the video of the front of the room.
 Unfortunately, due to the nature of the way the side video delivered to users, it is a non-trivial task to implement downloading for it and would take a serious time investment or additional libraries to figure out, so I'm leaving that out at this time.
 
+<img src="http://www.google.com.au/images/nav_logo7.png">
+
 Future feature ideas:
 Ability to download all the slide thumbnails
 
