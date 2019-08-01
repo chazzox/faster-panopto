@@ -8,7 +8,7 @@ Unfortunately, due to the nature of the way the side video delivered to users, i
 Future feature ideas:
 Ability to download all the slide thumbnails
 
-<a href="https://chrome.google.com/webstore/detail/fast-panopto/bginlheikaacjjdajifcbakcmfcgmefh">Download</a> and install from the Chrome web store or download the source and import locally.
+<a href="https://chrome.google.com/webstore/detail/fast-panopto/bginlheikaacjjdajifcbakcmfcgmefh">Download</a> and install from the Chrome web store or download the source and import into Chrome extensions locally.
 
 Changelog:
 * 1.21
