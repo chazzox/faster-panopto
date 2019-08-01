@@ -3,10 +3,10 @@ Chrome extension to allow for Panopto speeds outside of the given values.
 Since version 1.20: Allows downloading of the video of the front of the room.
 Unfortunately, due to the nature of the way the side video delivered to users, it is a non-trivial task to implement downloading for it and would take a serious time investment or additional libraries to figure out, so I'm leaving that out at this time.
 
-<img src="https://i.imgur.com/EBTCA0C.png">
-
-Future feature ideas:
+Considering for future updates:
 Ability to download all the slide thumbnails
+
+<img src="https://i.imgur.com/EBTCA0C.png">
 
 <a href="https://chrome.google.com/webstore/detail/fast-panopto/bginlheikaacjjdajifcbakcmfcgmefh">Download</a> and install from the Chrome web store or download the source and import into Chrome extensions locally.
 
