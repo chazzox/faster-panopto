@@ -12,7 +12,7 @@ chrome.runtime.onInstalled.addListener(function() {
     chrome.declarativeContent.onPageChanged.addRules([{
       // Condition to only enable the extension on panopto sites
       conditions: [new chrome.declarativeContent.PageStateMatcher({
-        pageUrl: {hostContains: '.panopto.com', pathContains: 'Viewer'},
+        pageUrl: {hostContains: '.panopto.com'},
       })],
         actions: [new chrome.declarativeContent.ShowPageAction()]
     }]);
@@ -39,7 +39,12 @@ function downloadLeft() {
     url: leftVideoURL,
     filename: pageTitle + " [BOARD].mp4",
     saveAs: true
-  });
+   }, function(entry) {
+        if(chrome.runtime.lastError) {
+          console.log("Malformed download URL. Must be on a URL of the form *://*.panopto.com/Panopto/Pages/Viewer.aspx?*");
+        } else {
+        }
+      });
 }
 
 /**

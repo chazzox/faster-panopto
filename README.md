@@ -11,6 +11,8 @@ Ability to download all the slide thumbnails
 <a href="https://chrome.google.com/webstore/detail/fast-panopto/bginlheikaacjjdajifcbakcmfcgmefh">Download</a> and install from the Chrome web store or download the source and import into Chrome extensions locally.
 
 Changelog:
+* 1.22
+  - Forced to reintroduce interface being accessible outside of video player page since Chrome webstore testers can't seem to figure out how this extension works. 
 * 1.21
   - Changed donate link to a fancy Paypal button
 * 1.20
