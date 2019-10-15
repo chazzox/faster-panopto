@@ -12,7 +12,7 @@ Ability to download all the slide thumbnails
 
 Changelog:
 * 1.22
-  - Forced to reintroduce interface being accessible outside of video player page since Chrome webstore testers can't seem to figure out how this extension works. 
+  - Rolled back change to interface being accessible outside of video player page
 * 1.21
   - Changed donate link to a fancy Paypal button
 * 1.20
