@@ -11,6 +11,8 @@ Ability to download all the slide thumbnails
 <a href="https://chrome.google.com/webstore/detail/fast-panopto/bginlheikaacjjdajifcbakcmfcgmefh">Download</a> and install from the Chrome web store or download the source and import into Chrome extensions locally.
 
 Changelog:
+* 1.23
+  - Modified to be usable with any domain so regions outside of the US can use it
 * 1.22
   - Rolled back change to interface being accessible outside of video player page
 * 1.21

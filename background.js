@@ -12,7 +12,7 @@ chrome.runtime.onInstalled.addListener(function() {
     chrome.declarativeContent.onPageChanged.addRules([{
       // Condition to only enable the extension on panopto sites
       conditions: [new chrome.declarativeContent.PageStateMatcher({
-        pageUrl: {hostContains: '.panopto.com'},
+        pageUrl: {hostContains: '.panopto.'},
       })],
         actions: [new chrome.declarativeContent.ShowPageAction()]
     }]);
