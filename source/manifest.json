@@ -3,15 +3,8 @@
 	"version": "0.0.1",
 	"description": "Forked version of Fast panopto designed to work on both firefox and chrome",
 	"homepage_url": "https://github.com/chazzox/fast-panopto/",
-	"background": {
-		"scripts": ["utils/background.js"]
-	},
-	"content_scripts": [
-		{
-			"matches": ["*://*.panopto.com/*/Viewer*"],
-			"js": ["utils/pageDOMParser.js"]
-		}
-	],
+	"background": {},
+	"content_scripts": [],
 	"permissions": ["activeTab", "tabs", "storage", "downloads"],
 	"browser_action": {
 		"default_popup": "popup.html",

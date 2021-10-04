@@ -2,12 +2,9 @@ import browser from 'webextension-polyfill';
 
 const metas = document.getElementsByTagName('meta');
 const pageTitle = document.querySelector('#HeadNode > title').textContent;
+
 var leftVideoURL = '';
 
-/**
- * Parse desired info out of this page's meta elements
- * Modifies this script's fields
- */
 function metaParse() {
 	for (let i = 0; i < metas.length; i++) {
 		// Parses out the left video's URL from the meta fields then formats it properly as well
