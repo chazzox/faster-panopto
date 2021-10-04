@@ -5,7 +5,7 @@
 	"homepage_url": "https://github.com/chazzox/fast-panopto/",
 	"background": {},
 	"content_scripts": [],
-	"permissions": ["activeTab", "tabs", "storage", "downloads"],
+	"permissions": ["activeTab", "storage", "downloads"],
 	"browser_action": {
 		"default_popup": "popup.html",
 		"default_icon": {

@@ -4,21 +4,30 @@ import browser from 'webextension-polyfill';
 import styled, { createGlobalStyle } from 'styled-components';
 
 const Global = createGlobalStyle`
-	html,body {
-		margin:0;
-		padding:0;
+	* {
+		font-family: 'Fira Code', monospace;
+	}
+	body {
+		margin: 0;
 	}
 `;
 
 const Row = styled.div``;
 
-const Title = styled.h1``;
+const Title = styled.h1`
+	margin: 0px 25px;
+	white-space: nowrap;
+`;
 
 const Footer = styled.div``;
 
-const Button = styled.button``;
+const Button = styled.button`
+	display: inline-block;
+`;
 
-const Input = styled.input``;
+const Input = styled.input`
+	display: inline-block;
+`;
 
 function App() {
 	const [speed, setSpeed] = React.useState(1);
@@ -27,6 +36,7 @@ function App() {
 		browser.tabs
 			.query({ active: true, currentWindow: true })
 			.then((tabs) => {
+				console.log(tabs);
 				// browser.tabs.executeScript(tabs[0].id, { code: 'document.getElementById("playButton").click()' });
 				browser.tabs.executeScript(tabs[0].id, {
 					code: `document.getElementsByTagName("video")[0].playbackRate = ${speed}`
