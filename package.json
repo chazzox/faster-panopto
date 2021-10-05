@@ -19,7 +19,8 @@
 	"devDependencies": {
 		"@parcel/config-webextension": "^2.0.0-rc.0",
 		"@parcel/transformer-image": "2.0.0-rc.0",
-		"parcel": "^2.0.0-rc.0"
+		"parcel": "^2.0.0-rc.0",
+		"prettier": "^2.4.1"
 	},
 	"webExt": {
 		"sourceDir": "distribution"
