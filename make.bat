@@ -1,3 +1,1 @@
-npm install -g pnpm
-pnpm install
-pnpm build
+npm install -g pnpm && pnpm install && pnpm build

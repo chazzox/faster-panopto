@@ -5,7 +5,8 @@
 -   Forked from [fast-panopto](https://github.com/Relliko/fast-panopto)
 -   Cross compatibility using [webextension-polyfill](https://github.com/mozilla/webextension-polyfill)
 -   Using react with parcel V2
--   repo boilerplate from [browser-extension-template](https://github.com/fregante/browser-extension-template)
+-   Repo boilerplate from [browser-extension-template](https://github.com/fregante/browser-extension-template)
+-   This project has been developed on with both windows 10 and the latest build of [manjaro i3 community edition](https://manjaro.org/downloads/community/i3/)
 
 ## Running
 
