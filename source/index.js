@@ -1,6 +1,6 @@
 import ReactDOM from 'react-dom';
 import React from 'react';
-import browser from 'webextension-polyfill';
+import browser, { storage } from 'webextension-polyfill';
 import styled, { createGlobalStyle } from 'styled-components';
 
 const Global = createGlobalStyle`
@@ -31,13 +31,21 @@ const Input = styled.input`
 
 function App() {
 	const [speed, setSpeed] = React.useState(1);
+	const [enabled, setEnabled] = React.useState(true);
+
+	React.useEffect(() => {
+		browser.storage.local
+			.get(['active', 'speed'])
+			.then((extensionStorage) => {
+				setSpeed(extensionStorage.speed);
+				setEnabled(extensionStorage.active);
+			});
+	}, []);
 
 	const setVideoSpeed = () => {
 		browser.tabs
 			.query({ active: true, currentWindow: true })
 			.then((tabs) => {
-				console.log(tabs);
-				// browser.tabs.executeScript(tabs[0].id, { code: 'document.getElementById("playButton").click()' });
 				browser.tabs.executeScript(tabs[0].id, {
 					code: `document.getElementsByTagName("video")[0].playbackRate = ${speed}`
 				});
@@ -47,7 +55,6 @@ function App() {
 				browser.tabs.executeScript(tabs[0].id, {
 					code: `document.getElementById('playSpeedMultiplier').innerText = ${speed}+'x'`
 				});
-				// browser.tabs.executeScript(tabs[0].id, { code: 'document.getElementById("playButton").click()' });
 			});
 	};
 
@@ -55,18 +62,29 @@ function App() {
 		<>
 			<Global />
 			<Title>faster-panopto</Title>
-			<Row>
-				<Input
-					step="0.1"
-					type="number"
-					onChange={(e) => setSpeed(e.target.value)}
-					value={speed}
-				/>
-				<Button onClick={setVideoSpeed}>Set Speed</Button>
-			</Row>
-			<Row>
-				download <Button>save as</Button>
-			</Row>
+			{enabled ? (
+				<>
+					<Row>
+						<Input
+							step="0.1"
+							type="number"
+							onChange={(e) => {
+								browser.storage.local.set({
+									speed: e.target.value
+								});
+								setSpeed(e.target.value);
+							}}
+							value={speed}
+						/>
+						<Button onClick={setVideoSpeed}>Set Speed</Button>
+					</Row>
+					<Row>
+						download <Button>save as</Button>
+					</Row>
+				</>
+			) : (
+				<>disabled</>
+			)}
 			<Footer>links</Footer>
 		</>
 	);
