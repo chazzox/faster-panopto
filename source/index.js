@@ -107,25 +107,20 @@ function App() {
 			<Global />
 			<Title>faster-panopto</Title>
 			{enabled ? (
-				<>
-					<Row>
-						<Input
-							step="0.1"
-							type="number"
-							onChange={(e) => {
-								browser.storage.local.set({
-									speed: e.target.value
-								});
-								setSpeed(e.target.value);
-							}}
-							value={speed}
-						/>
-						<Button onClick={setVideoSpeed}>Set Speed</Button>
-					</Row>
-					<Row>
-						<span>Download</span> <Button>Save as...</Button>
-					</Row>
-				</>
+				<Row>
+					<Input
+						step="0.1"
+						type="number"
+						onChange={(e) => {
+							browser.storage.local.set({
+								speed: e.target.value
+							});
+							setSpeed(e.target.value);
+						}}
+						value={speed}
+					/>
+					<Button onClick={setVideoSpeed}>Set Speed</Button>
+				</Row>
 			) : (
 				<Title>Disabled</Title>
 			)}
