@@ -12,7 +12,7 @@
 
 This project uses pnpm however packages can be installed with `yarn`\\`npm` and was written with node version 16.6.1 and npm version 7.24.1
 
-[Node/NPM Installation Download]https://nodejs.org/dist/v16.6.1/node-v16.6.1-x64.msi)(instructions included)
+[Node/NPM Installation Download](https://nodejs.org/dist/v16.6.1/node-v16.6.1-x64.msi) (instructions included)
 
 -   To install dependencies run `pnpm i`
 -   To build run `pnpm build`
