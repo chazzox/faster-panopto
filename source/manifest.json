@@ -15,8 +15,7 @@
 	},
 	"icons": {
 		"16": "images/enabled.png",
-		"32": "images/disabled.png",
-		"42": "images/enabled.png"
+		"32": "images/disabled.png"
 	},
 	"manifest_version": 2
 }

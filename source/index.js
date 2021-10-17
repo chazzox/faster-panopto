@@ -26,7 +26,7 @@ const Title = styled.h1`
 	margin: 0px 25px;
 	white-space: nowrap;
 	text-align: center;
-	font-size: 20px;
+	font-size: 15px;
 `;
 
 const Row = styled.div`
@@ -37,10 +37,10 @@ const Row = styled.div`
 `;
 
 const Button = styled.button`
-	font-size: 15px;
+	font-size: 13px;
 	white-space: nowrap;
-	margin: 0px 10px;
-	padding: 5px;
+	margin: 0px 5px;
+	padding: 4px;
 	color: black;
 	background: white;
 	border: none;
@@ -107,20 +107,22 @@ function App() {
 			<Global />
 			<Title>faster-panopto</Title>
 			{enabled ? (
-				<Row>
-					<Input
-						step="0.1"
-						type="number"
-						onChange={(e) => {
-							browser.storage.local.set({
-								speed: e.target.value
-							});
-							setSpeed(e.target.value);
-						}}
-						value={speed}
-					/>
-					<Button onClick={setVideoSpeed}>Set Speed</Button>
-				</Row>
+				<>
+					<Row>
+						<Input
+							step="0.1"
+							type="number"
+							onChange={(e) => {
+								browser.storage.local.set({
+									speed: e.target.value
+								});
+								setSpeed(e.target.value);
+							}}
+							value={speed}
+						/>
+						<Button onClick={setVideoSpeed}>Set Speed</Button>
+					</Row>
+				</>
 			) : (
 				<Title>Disabled</Title>
 			)}
@@ -137,6 +139,7 @@ const Github = () => (
 		github
 	</Link>
 );
+
 const Twitter = () => (
 	<Link as="a" target="_blank" href="https://twitter.com/_chazzox_">
 		twitter
