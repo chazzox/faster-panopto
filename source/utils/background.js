@@ -4,7 +4,7 @@ var tabTimeout;
 
 // setup storage
 browser.runtime.onInstalled.addListener(() => {
-	browser.storage.local.set({ speed: 1, active: false });
+	browser.storage.local.set({ speed: 1, active: false, url: '' });
 	checkTabValid();
 });
 
@@ -42,3 +42,13 @@ function checkTabValid() {
 		tabTimeout = undefined;
 	}, 200);
 }
+
+browser.webRequest.onBeforeRequest.addListener(
+	(e) => {
+		if (!!e.url.match(/\w*master.m3u8\w*/g)) console.log(e, e.url);
+	},
+	{
+		urls: ['<all_urls>']
+	},
+	['requestBody']
+);
