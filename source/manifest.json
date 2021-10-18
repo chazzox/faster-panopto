@@ -17,5 +17,6 @@
 		"16": "images/enabled.png",
 		"32": "images/disabled.png"
 	},
+	"web_accessible_resources": ["images/up.png", "images/down.png"],
 	"manifest_version": 2
 }
