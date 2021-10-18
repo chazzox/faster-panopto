@@ -1,5 +1,5 @@
-import ReactDOM from 'react-dom';
 import React from 'react';
+import ReactDOM from 'react-dom';
 import browser from 'webextension-polyfill';
 import styled, { createGlobalStyle } from 'styled-components';
 
@@ -13,7 +13,11 @@ const Global = createGlobalStyle`
 		min-height: 120px;
 		min-width: 180px;
 		margin: 0;
-		background: linear-gradient(45deg, rgb(13, 25, 51) 40%, rgb(10, 16, 21));
+		background: linear-gradient(
+			45deg,
+			rgb(13, 25, 51) 40%,
+			rgb(10, 16, 21)
+		);
 		padding: 5px;
 	}
 	span,
@@ -21,98 +25,89 @@ const Global = createGlobalStyle`
 	a {
 		font-weight: 500;
 	}
+`;
 
-	/* Hide + and - buttons on input */
-	input::-webkit-outer-spin-button,
-	input::-webkit-inner-spin-button {
-	-webkit-appearance: none;
-	margin: 0;
-	}
-	input[type=number] {
-	-moz-appearance: textfield;
-	}
+const Wrapper = styled.div`
+	width: 100%;
+	border-style: solid;
+	border-width: 2px;
+	border-color: rgb(65, 67, 78);
+	background-color: rgb(0, 4, 8);
+	padding: 6px;
+	border-radius: 18px;
+`;
 
-	#errorContainer {
-		background: #282c2f;
-		border: none;
-		padding-right: 12px;
-		padding-left: 2px;
-		padding-top: 2px;
-		padding-bottom: 2px;
-		margin-left: 8px;
-		margin-right: 8px;
-		border-radius: 9px;
+const ErrorContainer = styled.div`
+	background: #282c2f;
+	border: none;
+	padding-right: 12px;
+	padding-left: 2px;
+	padding-top: 2px;
+	padding-bottom: 2px;
+	margin-left: 8px;
+	margin-right: 8px;
+	border-radius: 9px;
 
-		h1 {
-			font-weight: 600;
-			width: 100%;
-			box-sizing: border-box;
-			margin: 0;
-			margin-top: 12px;
-			margin-bottom: 12px;
-			padding: 8px;
-			border-left-style: solid;
-			border-width: 4px;
-			border-color: #de105c;
-		}
-	}
-	#wrapper {
+	h1 {
+		font-weight: 600;
 		width: 100%;
-		border-style: solid;
-		border-width: 2px;
-		border-color: rgb(65, 67, 78);
-		background-color: rgb(0, 4, 8);
-		padding: 6px;
-		border-radius: 18px;
+		box-sizing: border-box;
+		margin: 0;
+		margin-top: 12px;
+		margin-bottom: 12px;
+		padding: 8px;
+		border-left-style: solid;
+		border-width: 4px;
+		border-color: #de105c;
+	}
+`;
 
-		#speedContainer {
-			background: rgb(0, 4, 8);
-			border-radius: 9px;
-			height: 80px;
-			max-height: 80px;
-			overflow: hidden;
-			position: relative;
-			padding-right: 30px;
+const SpeedContainer = styled.div`
+	background: rgb(0, 4, 8);
+	border-radius: 9px;
+	height: 80px;
+	max-height: 80px;
+	overflow: hidden;
+	position: relative;
+	padding-right: 30px;
 
-			button {
-				position: absolute;
-				right: 0;
-				margin: 0;
-				display: inline-block;
-				background-color: rgb(70, 74, 77);
-				outline: none;
-				border: none;
-				height: 25px;
-				width: 30px;
-				background-repeat: no-repeat;
-				background-size: 9px;
-				background-position: center;
+	button {
+		position: absolute;
+		right: 0;
+		margin: 0;
+		display: inline-block;
+		background-color: rgb(70, 74, 77);
+		outline: none;
+		border: none;
+		height: 25px;
+		width: 30px;
+		background-repeat: no-repeat;
+		background-size: 9px;
+		background-position: center;
 
-				&#applySpeed {
-					bottom: 0;
-					left: 0;
-					width: 100%;
-					height: 30px;
-					max-height: 30px;
-					line-height: 30px;
-					padding: 0;
-					border-radius: 0;
-					background-color: rgba(70, 74, 77, 0.85);
-				}
+		&#applySpeed {
+			bottom: 0;
+			left: 0;
+			width: 100%;
+			height: 30px;
+			max-height: 30px;
+			line-height: 30px;
+			padding: 0;
+			border-radius: 0;
+			background-color: rgba(70, 74, 77, 0.85);
+		}
 
-				&#upArrow {
-					top: 0;
-					background-image: url("/images/up.png")
-				}
-				&#downArrow {
-					bottom: 30px;
-					background-image: url("/images/down.png")
-				}
+		&#upArrow {
+			top: 0;
+			background-image: url('/images/up.png');
+		}
+		&#downArrow {
+			bottom: 30px;
+			background-image: url('/images/down.png');
+		}
 
-				&:hover {
-					background-color: rgb(100, 104, 107) !important;
-				}
-			}
+		&:hover {
+			background-color: rgb(100, 104, 107) !important;
 		}
 	}
 `;
@@ -153,6 +148,14 @@ const Button = styled.button`
 `;
 
 const Input = styled.input`
+	/* hide standard toggles */
+	-moz-appearance: textfield;
+	&::-webkit-outer-spin-button,
+	input::-webkit-inner-spin-button {
+		-webkit-appearance: none;
+		margin: 0;
+	}
+
 	background: #282c2f;
 	border: none;
 	display: inline-block;
@@ -182,8 +185,9 @@ const Link = styled(Button)`
 `;
 
 function App() {
-	const [speed, setSpeed] = React.useState(1);
+	const [speed, setSpeed] = React.useState(1.0);
 	const [enabled, setEnabled] = React.useState(true);
+	const inputEl = React.useRef(null);
 
 	React.useEffect(() => {
 		browser.storage.local
@@ -215,11 +219,12 @@ function App() {
 			<Global />
 			<Title>faster-panopto</Title>
 			<Row>
-				<div id="wrapper">
+				<Wrapper>
 					{enabled ? (
 						<>
-							<div id="speedContainer">
+							<SpeedContainer>
 								<Input
+									ref={inputEl}
 									step="0.1"
 									type="number"
 									onChange={(e) => {
@@ -232,28 +237,28 @@ function App() {
 								/>
 								<button
 									id="upArrow"
-									onClick={() => setSpeed(speed + 0.1)}
-								></button>
+									onClick={() => inputEl.current.stepUp()}
+								/>
 								<button
 									id="downArrow"
-									onClick={() => setSpeed(speed - 0.1)}
-								></button>
+									onClick={() => inputEl.current.stepDown()}
+								/>
 								<Button id="applySpeed" onClick={setVideoSpeed}>
 									Apply Speed
 								</Button>
-							</div>
+							</SpeedContainer>
 						</>
 					) : (
-						<div id="errorContainer">
+						<ErrorContainer>
 							<Title>Not available on this page!</Title>
-						</div>
+						</ErrorContainer>
 					)}
-					<Footer>
-						<Github />
-						<Twitter />
-					</Footer>
-				</div>
+				</Wrapper>
 			</Row>
+			<Footer>
+				<Github />
+				<Twitter />
+			</Footer>
 		</>
 	);
 }
@@ -270,6 +275,4 @@ const Twitter = () => (
 	</Link>
 );
 
-const app = document.getElementById('app');
-
-ReactDOM.render(<App />, app);
+ReactDOM.render(<App />, document.getElementById('app'));
