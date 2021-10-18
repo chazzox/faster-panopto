@@ -2,8 +2,8 @@
 
 ## Where to download
 
-- [Firefox](https://addons.mozilla.org/en-US/firefox/addon/faster-panopto/)
-- [Chrome]() (in review process atm)
+-   [Firefox](https://addons.mozilla.org/en-US/firefox/addon/faster-panopto/)
+-   [Chrome]((https://github.com/chazzox/faster-panopto/) (in review process atm)
 
 ## About
 
