@@ -10,12 +10,12 @@
 		"default_popup": "popup.html",
 		"browser_style": true,
 		"default_icon": {
-			"64": "images/enabled.png"
+			"32": "images/enabled.png"
 		}
 	},
 	"icons": {
-		"64": "images/enabled.png"
+		"32": "images/enabled.png"
 	},
-	"web_accessible_resources": ["images/arrow.png", "images/disabled"],
+	"web_accessible_resources": ["images/arrow.png", "images/disabled.png"],
 	"manifest_version": 2
 }
