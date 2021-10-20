@@ -8,15 +8,14 @@
 	"permissions": ["activeTab", "tabs", "storage"],
 	"browser_action": {
 		"default_popup": "popup.html",
+		"browser_style": true,
 		"default_icon": {
-			"16": "images/enabled.png",
 			"32": "images/enabled.png"
 		}
 	},
 	"icons": {
-		"16": "images/enabled.png",
-		"32": "images/disabled.png"
+		"32": "images/enabled.png"
 	},
-	"web_accessible_resources": ["images/up.png", "images/down.png"],
+	"web_accessible_resources": ["images/arrow.png", "images/disabled.png"],
 	"manifest_version": 2
 }

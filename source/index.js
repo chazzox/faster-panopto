@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import browser from 'webextension-polyfill';
-import styled, { createGlobalStyle } from 'styled-components';
+import styled, { createGlobalStyle, css } from 'styled-components';
 
 const Global = createGlobalStyle`
 	* {
@@ -9,57 +9,45 @@ const Global = createGlobalStyle`
 			Oxygen-Sans, Ubuntu, Cantarell, 'Helvetica Neue', sans-serif;
 		color: white;
 	}
+
 	body {
-		min-height: 120px;
-		min-width: 180px;
 		margin: 0;
 		background: linear-gradient(
 			45deg,
 			rgb(13, 25, 51) 40%,
 			rgb(10, 16, 21)
 		);
-		padding: 5px;
-	}
-	span,
-	button,
-	a {
-		font-weight: 500;
+		min-height: 120px;
+		min-width: 180px;
+		border: 3px solid white;
+		border-radius: 5px;
 	}
 `;
 
 const Wrapper = styled.div`
-	width: 100%;
-	border-style: solid;
-	border-width: 2px;
-	border-color: rgb(65, 67, 78);
-	background-color: rgb(0, 4, 8);
-	padding: 6px;
 	border-radius: 18px;
+	padding: 5px;
 `;
 
-const ErrorContainer = styled.div`
-	background: #282c2f;
-	border: none;
-	padding-right: 12px;
-	padding-left: 2px;
-	padding-top: 2px;
-	padding-bottom: 2px;
-	margin-left: 8px;
-	margin-right: 8px;
-	border-radius: 9px;
+const ContentWrapper = styled.div`
+	background: black;
+	padding: 6px;
+	border-radius: 18px;
+	border: 2px solid rgb(65, 67, 78);
+`;
 
-	h1 {
-		font-weight: 600;
-		width: 100%;
-		box-sizing: border-box;
-		margin: 0;
-		margin-top: 12px;
-		margin-bottom: 12px;
-		padding: 8px;
-		border-left-style: solid;
-		border-width: 4px;
-		border-color: #de105c;
-	}
+const Footer = styled.div`
+	margin: 5px 0;
+	display: flex;
+	justify-content: space-evenly;
+`;
+
+const Title = styled.h1`
+	margin: 5px 25px;
+	white-space: nowrap;
+	text-align: center;
+	font-size: 20px;
+	font-weight: 700;
 `;
 
 const SpeedContainer = styled.div`
@@ -67,79 +55,28 @@ const SpeedContainer = styled.div`
 	border-radius: 9px;
 	height: 80px;
 	max-height: 80px;
-	overflow: hidden;
-	position: relative;
-	padding-right: 30px;
-
-	button {
-		position: absolute;
-		right: 0;
-		margin: 0;
-		display: inline-block;
-		background-color: rgb(70, 74, 77);
-		outline: none;
-		border: none;
-		height: 25px;
-		width: 30px;
-		background-repeat: no-repeat;
-		background-size: 9px;
-		background-position: center;
-
-		&#applySpeed {
-			bottom: 0;
-			left: 0;
-			width: 100%;
-			height: 30px;
-			max-height: 30px;
-			line-height: 30px;
-			padding: 0;
-			border-radius: 0;
-			background-color: rgba(70, 74, 77, 0.85);
-		}
-
-		&#upArrow {
-			top: 0;
-			background-image: url('/images/up.png');
-		}
-		&#downArrow {
-			bottom: 30px;
-			background-image: url('/images/down.png');
-		}
-
-		&:hover {
-			background-color: rgb(100, 104, 107) !important;
-		}
-	}
-`;
-
-const Title = styled.h1`
-	margin: 0px 25px;
-	white-space: nowrap;
-	text-align: center;
-	font-size: 15px;
-`;
-
-const Row = styled.div`
 	display: flex;
-	justify-content: center;
-	align-items: center;
-	margin: 10px 0px;
+	flex-direction: column;
+	overflow: hidden;
+`;
+
+const InputWrapper = styled.div`
+	display: flex;
+`;
+
+const ButtonWrapper = styled.div`
+	display: flex;
+	flex-direction: column;
 `;
 
 const Button = styled.button`
-	text-transform: capitalize;
 	font-size: 13px;
-	white-space: nowrap;
-	margin: 0px 5px;
-	padding-top: 6px;
-	padding-bottom: 6px;
-	padding-left: 12px;
-	padding-right: 12px;
-	color: rgba(255, 255, 255, 0.9);
-	background: rgba(98, 103, 111, 0.5);
 	border: none;
 	border-radius: 100px;
-	cursor: pointer;
+	color: rgba(255, 255, 255, 0.9);
+	background: rgba(98, 103, 111, 0.5);
+	margin: 0px 5px;
+	padding: 5px 8px;
 	transition: background-color 0.25s ease;
 	&:hover {
 		background: rgba(98, 103, 111, 1);
@@ -151,43 +88,74 @@ const Input = styled.input`
 	/* hide standard toggles */
 	-moz-appearance: textfield;
 	&::-webkit-outer-spin-button,
-	input::-webkit-inner-spin-button {
+	&::-webkit-inner-spin-button {
 		-webkit-appearance: none;
 		margin: 0;
 	}
-
 	background: #282c2f;
 	border: none;
 	display: inline-block;
 	width: 100%;
 	color: white;
-	padding-top: 8px;
-	padding-bottom: 8px;
-	padding-left: 24px;
-	padding-right: 12px;
+	padding: 8px 12px;
 	height: 50px;
 	max-height: 50px;
 	box-sizing: border-box;
+	text-align: center;
+	font-size: 15px;
 	&:focus {
 		outline: none;
 	}
-`;
-
-const Footer = styled.div`
-	display: flex;
-	justify-content: space-evenly;
-	margin-top: 8px;
-	margin-bottom: 2px;
 `;
 
 const Link = styled(Button)`
 	text-decoration: none;
 `;
 
-function App() {
-	const [speed, setSpeed] = React.useState(1.0);
+const InputButton = css`
+	flex: 1;
+	outline: none;
+	background: none;
+	border: none;
+	width: 25px;
+	height: 25px;
+	background: rgb(70, 74, 77, 0.85);
+	background-repeat: no-repeat;
+	background-size: 9px;
+	background-position: center;
+	cursor: pointer;
+	&:hover {
+		background-color: rgb(100, 104, 107) !important;
+	}
+`;
+
+const Up = styled.button`
+	${InputButton};
+	transform: rotate(180deg);
+	background-image: url('/images/arrow.png');
+`;
+
+const Down = styled.button`
+	${InputButton};
+	background-image: url('/images/arrow.png');
+`;
+
+const Apply = styled.button`
+	width: 100%;
+	border: none;
+	height: 100%;
+	background: rgb(70, 74, 77);
+	text-align: center;
+	cursor: pointer;
+	&:hover {
+		background-color: rgb(100, 104, 107) !important;
+	}
+`;
+
+const App = () => {
+	const [speed, setSpeed] = React.useState('1');
 	const [enabled, setEnabled] = React.useState(true);
-	const inputEl = React.useRef(null);
+	const inputRef = React.useRef(null);
 
 	React.useEffect(() => {
 		browser.storage.local
@@ -214,54 +182,61 @@ function App() {
 			});
 	};
 
+	const updateInput = (value) => {
+		browser.storage.local.set({
+			speed: value
+		});
+		setSpeed(value);
+	};
+
 	return (
-		<>
+		<Wrapper>
 			<Global />
-			<Title>faster-panopto</Title>
-			<Row>
-				<Wrapper>
-					{enabled ? (
-						<>
-							<SpeedContainer>
-								<Input
-									ref={inputEl}
-									step="0.1"
-									type="number"
-									onChange={(e) => {
-										browser.storage.local.set({
-											speed: e.target.value
-										});
-										setSpeed(parseInt(e.target.value));
-									}}
-									value={speed}
+			<Title>Faster-Panopto</Title>
+			<ContentWrapper>
+				{enabled ? (
+					<SpeedContainer>
+						<InputWrapper>
+							<Input
+								type="number"
+								min="0"
+								step="0.1"
+								ref={inputRef}
+								onChange={(e) => updateInput(e.target.value)}
+								value={speed}
+							/>
+							<ButtonWrapper>
+								<Up
+									onClick={() =>
+										updateInput(
+											(parseFloat(speed) + 0.1).toFixed(1)
+										)
+									}
 								/>
-								<button
-									id="upArrow"
-									onClick={() => inputEl.current.stepUp()}
+								<Down
+									onClick={() =>
+										updateInput(
+											(parseFloat(speed) - 0.1).toFixed(1)
+										)
+									}
 								/>
-								<button
-									id="downArrow"
-									onClick={() => inputEl.current.stepDown()}
-								/>
-								<Button id="applySpeed" onClick={setVideoSpeed}>
-									Apply Speed
-								</Button>
-							</SpeedContainer>
-						</>
-					) : (
-						<ErrorContainer>
-							<Title>Not available on this page!</Title>
-						</ErrorContainer>
-					)}
-				</Wrapper>
-			</Row>
+							</ButtonWrapper>
+						</InputWrapper>
+
+						<Apply onClick={setVideoSpeed}>Apply Speed</Apply>
+					</SpeedContainer>
+				) : (
+					<Title>Not available on this page!</Title>
+				)}
+			</ContentWrapper>
+
 			<Footer>
 				<Github />
 				<Twitter />
 			</Footer>
-		</>
+		</Wrapper>
 	);
-}
+};
 
 const Github = () => (
 	<Link as="a" target="_blank" href="https://github.com/chazzox/">
