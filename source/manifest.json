@@ -1,7 +1,7 @@
 {
 	"$schema": "https://json.schemastore.org/webextension.json",
 	"name": "Faster Panopto",
-	"version": "0.0.2",
+	"version": "0.0.3",
 	"description": "Forked version of Fast panopto designed to work on both firefox and chrome",
 	"homepage_url": "https://github.com/chazzox/faster-panopto/",
 	"background": { "scripts": ["utils/background"] },

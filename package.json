@@ -1,6 +1,6 @@
 {
 	"name": "faster-panopto",
-	"version": "0.0.2",
+	"version": "0.0.3",
 	"description": "upgraded version of fast-panopto to work with firefox and chrome",
 	"private": true,
 	"scripts": {
