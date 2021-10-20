@@ -1,18 +1,149 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import browser from 'webextension-polyfill';
-import styled, { createGlobalStyle } from 'styled-components';
+import styled, { createGlobalStyle, css } from 'styled-components';
 
-const Global = createGlobalStyle``;
-const Button = styled.button``;
-const Input = styled.input``;
-const Footer = styled.div``;
-const Link = styled(Button)``;
-const Up = styled.button``;
-const Down = styled.button``;
-const Apply = styled.button``;
+const Global = createGlobalStyle`
+	* {
+		font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
+			Oxygen-Sans, Ubuntu, Cantarell, 'Helvetica Neue', sans-serif;
+		color: white;
+	}
 
-function App() {
+	body {
+		margin: 0;
+		background: linear-gradient(
+			45deg,
+			rgb(13, 25, 51) 40%,
+			rgb(10, 16, 21)
+		);
+		min-height: 120px;
+		min-width: 180px;
+		border: 3px solid white;
+		border-radius: 5px;
+	}
+`;
+
+const Wrapper = styled.div`
+	border-radius: 18px;
+	padding: 5px;
+`;
+
+const Footer = styled.div`
+	margin: 5px 0;
+	display: flex;
+	justify-content: space-evenly;
+`;
+
+const Title = styled.h1`
+	margin: 5px 25px;
+	white-space: nowrap;
+	text-align: center;
+	font-size: 20px;
+	font-weight: 700;
+`;
+
+const SpeedContainer = styled.div`
+	background: rgb(0, 4, 8);
+	border-radius: 9px;
+	height: 80px;
+	max-height: 80px;
+	display: flex;
+	flex-direction: column;
+	overflow: hidden;
+`;
+
+const InputWrapper = styled.div`
+	display: flex;
+`;
+
+const ButtonWrapper = styled.div`
+	display: flex;
+	flex-direction: column;
+`;
+
+const Button = styled.button`
+	font-size: 13px;
+	border: none;
+	border-radius: 100px;
+	color: rgba(255, 255, 255, 0.9);
+	background: rgba(98, 103, 111, 0.5);
+	margin: 0px 5px;
+	padding: 5px 8px;
+	transition: background-color 0.25s ease;
+	&:hover {
+		background: rgba(98, 103, 111, 1);
+		color: white;
+	}
+`;
+
+const Input = styled.input`
+	/* hide standard toggles */
+	-moz-appearance: textfield;
+	&::-webkit-outer-spin-button,
+	&::-webkit-inner-spin-button {
+		-webkit-appearance: none;
+		margin: 0;
+	}
+	background: #282c2f;
+	border: none;
+	display: inline-block;
+	width: 100%;
+	color: white;
+	padding: 8px 12px;
+	height: 50px;
+	max-height: 50px;
+	box-sizing: border-box;
+	&:focus {
+		outline: none;
+	}
+`;
+
+const Link = styled(Button)`
+	text-decoration: none;
+`;
+
+const InputButton = css`
+	flex: 1;
+	outline: none;
+	background: none;
+	border: none;
+	width: 25px;
+	height: 25px;
+	background: rgb(70, 74, 77, 0.85);
+	background-repeat: no-repeat;
+	background-size: 9px;
+	background-position: center;
+	cursor: pointer;
+	&:hover {
+		background-color: rgb(100, 104, 107) !important;
+	}
+`;
+
+const Up = styled.button`
+	${InputButton};
+	transform: rotate(180deg);
+	background-image: url('/images/arrow.png');
+`;
+
+const Down = styled.button`
+	${InputButton};
+	background-image: url('/images/arrow.png');
+`;
+
+const Apply = styled.button`
+	width: 100%;
+	border: none;
+	height: 100%;
+	background: rgb(70, 74, 77);
+	text-align: center;
+	cursor: pointer;
+	&:hover {
+		background-color: rgb(100, 104, 107) !important;
+	}
+`;
+
+const App = () => {
 	const [speed, setSpeed] = React.useState(1.0);
 	const [enabled, setEnabled] = React.useState(true);
 	const inputEl = React.useRef(null);
@@ -43,13 +174,13 @@ function App() {
 	};
 
 	return (
-		<>
+		<Wrapper>
 			<Global />
-			<h1>Faster-Panopto</h1>
+			<Title>Faster-Panopto</Title>
 
 			{enabled ? (
-				<div>
-					<div>
+				<SpeedContainer>
+					<InputWrapper>
 						<Input
 							type="number"
 							ref={inputEl}
@@ -57,32 +188,31 @@ function App() {
 							step="0.1"
 							onChange={(e) => {
 								browser.storage.local.set({
-									speed: parseInt(e.target.value)
+									speed: e.target.value
 								});
-								setSpeed(parseInt(e.target.value));
+								setSpeed(e.target.value);
 							}}
 							value={speed}
 						/>
-						<div>
+						<ButtonWrapper>
 							<Up onClick={() => inputEl.current.stepUp()} />
 							<Down onClick={() => inputEl.current.stepDown()} />
-						</div>
-					</div>
+						</ButtonWrapper>
+					</InputWrapper>
+
 					<Apply onClick={setVideoSpeed}>Apply Speed</Apply>
-				</div>
+				</SpeedContainer>
 			) : (
-				<div>
-					<h1>Not available on this page!</h1>
-				</div>
+				<Title>Not available on this page!</Title>
 			)}
 
 			<Footer>
 				<Github />
 				<Twitter />
 			</Footer>
-		</>
+		</Wrapper>
 	);
-}
+};
 
 const Github = () => (
 	<Link as="a" target="_blank" href="https://github.com/chazzox/">
