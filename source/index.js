@@ -29,6 +29,13 @@ const Wrapper = styled.div`
 	padding: 5px;
 `;
 
+const ContentWrapper = styled.div`
+	background: black;
+	padding: 6px;
+	border-radius: 18px;
+	border: 2px solid rgb(65, 67, 78);
+`;
+
 const Footer = styled.div`
 	margin: 5px 0;
 	display: flex;
@@ -94,6 +101,8 @@ const Input = styled.input`
 	height: 50px;
 	max-height: 50px;
 	box-sizing: border-box;
+	text-align: center;
+	font-size: 15px;
 	&:focus {
 		outline: none;
 	}
@@ -144,9 +153,9 @@ const Apply = styled.button`
 `;
 
 const App = () => {
-	const [speed, setSpeed] = React.useState(1.0);
+	const [speed, setSpeed] = React.useState('1');
 	const [enabled, setEnabled] = React.useState(true);
-	const inputEl = React.useRef(null);
+	const inputRef = React.useRef(null);
 
 	React.useEffect(() => {
 		browser.storage.local
@@ -173,38 +182,53 @@ const App = () => {
 			});
 	};
 
+	const updateInput = (value) => {
+		browser.storage.local.set({
+			speed: value
+		});
+		setSpeed(value);
+	};
+
 	return (
 		<Wrapper>
 			<Global />
 			<Title>Faster-Panopto</Title>
+			<ContentWrapper>
+				{enabled ? (
+					<SpeedContainer>
+						<InputWrapper>
+							<Input
+								type="number"
+								min="0"
+								step="0.1"
+								ref={inputRef}
+								onChange={(e) => updateInput(e.target.value)}
+								value={speed}
+							/>
+							<ButtonWrapper>
+								<Up
+									onClick={() =>
+										updateInput(
+											(parseFloat(speed) + 0.1).toFixed(1)
+										)
+									}
+								/>
+								<Down
+									onClick={() =>
+										updateInput(
+											(parseFloat(speed) - 0.1).toFixed(1)
+										)
+									}
+								/>
+							</ButtonWrapper>
+						</InputWrapper>
 
-			{enabled ? (
-				<SpeedContainer>
-					<InputWrapper>
-						<Input
-							type="number"
-							ref={inputEl}
-							min="0"
-							step="0.1"
-							onChange={(e) => {
-								browser.storage.local.set({
-									speed: e.target.value
-								});
-								setSpeed(e.target.value);
-							}}
-							value={speed}
-						/>
-						<ButtonWrapper>
-							<Up onClick={() => inputEl.current.stepUp()} />
-							<Down onClick={() => inputEl.current.stepDown()} />
-						</ButtonWrapper>
-					</InputWrapper>
-
-					<Apply onClick={setVideoSpeed}>Apply Speed</Apply>
-				</SpeedContainer>
-			) : (
-				<Title>Not available on this page!</Title>
-			)}
+						<Apply onClick={setVideoSpeed}>Apply Speed</Apply>
+					</SpeedContainer>
+				) : (
+					<Title>Not available on this page!</Title>
+				)}
+			</ContentWrapper>
 
 			<Footer>
 				<Github />
