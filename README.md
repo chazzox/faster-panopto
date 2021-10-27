@@ -3,7 +3,7 @@
 ## Where to download
 
 -   [Firefox](https://addons.mozilla.org/en-US/firefox/addon/faster-panopto/)
--   [Chrome](https://github.com/chazzox/faster-panopto/) (in review process atm)
+-   [Chrome](https://chrome.google.com/webstore/detail/faster-panopto/lbehhpicfbglgijknhemcjcmencaajid)
 
 ## About
 
@@ -23,3 +23,8 @@ This project uses pnpm however packages can be installed with `yarn`\\`npm` and 
 -   To build run `pnpm build`
 -   The extension code will be located inside a folder called `distribution`
 -   Run `make.bat` if you would like to do all this in a single step
+
+## Future Additions
+
+-   Download functionality
+-   Safari compatibility
