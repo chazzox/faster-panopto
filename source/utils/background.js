@@ -45,7 +45,9 @@ function checkTabValid() {
 
 browser.webRequest.onBeforeRequest.addListener(
 	(e) => {
-		if (!!e.url.match(/\w*master.m3u8\w*/g)) console.log(e, e.url);
+		e?.originUrl?.includes('panopto') &&
+			e?.url?.includes('.m3u8') &&
+			console.log(e, e.url);
 	},
 	{
 		urls: ['<all_urls>']
