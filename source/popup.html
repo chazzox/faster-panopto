@@ -66,6 +66,21 @@
 			}
 
 			/* extension styles begin */
+			body,
+			.files {
+				scrollbar-color: rgb(210, 210, 210) rgb(46, 54, 69);
+				scrollbar-width: thin;
+			}
+			html::-webkit-scrollbar-track {
+				background-color: rgb(46, 54, 69);
+			}
+
+			html::-webkit-scrollbar-thumb {
+				background-color: rgb(210, 210, 210);
+			}
+			html::-webkit-scrollbar {
+				width: 9px;
+			}
 			* {
 				font-family: 'Nunito', sans-serif;
 				box-sizing: border-box;
@@ -83,6 +98,7 @@
 				border: 3px solid white;
 				border-radius: 5px;
 				padding: 15px 5px;
+				width: 300px;
 			}
 
 			#links {
@@ -192,6 +208,34 @@
 
 			h1 {
 				text-align: center;
+			}
+
+			.files {
+				display: flex;
+				flex-grow: 0;
+				overflow-x: scroll;
+				margin: 15px;
+			}
+			.files > button {
+				color: rgba(255, 255, 255, 0.9);
+				background: rgba(98, 103, 111, 0.5);
+				transition: background-color 0.25s ease;
+				padding: 3px;
+				border: none;
+				border-radius: 5px;
+				margin: 15px;
+				margin-top: 0px;
+				transition: background 0.2s ease;
+				cursor: pointer;
+			}
+			.files > button:hover {
+				background: rgba(98, 103, 111, 1);
+				color: white;
+			}
+			h3 {
+				width: 100%;
+				text-align: center;
+				margin-bottom: 0px;
 			}
 		</style>
 	</head>

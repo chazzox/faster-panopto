@@ -55,8 +55,7 @@ const App = () => {
 	};
 
 	const cleanFileName = (url) => {
-		// some processing
-		return url;
+		return url.split('/').splice(-1);
 	};
 
 	return (
@@ -108,21 +107,22 @@ const App = () => {
 					</div>
 				)}
 			</div>
-
-			{urls.map((url, index) => (
-				<button
-					className="file"
-					key={index}
-					onClick={() =>
-						copy(
-							`ffmpeg -i "${url}" -bsf:a aac_adtstoasc -vcodec copy -c copy -crf 50 faster-panopto-${new Date().getTime()}.mp4`
-						)
-					}
-				>
-					{cleanFileName(url)}
-				</button>
-			))}
-
+			<h3>Recent files</h3>
+			<div class="files">
+				{urls.map((url, index) => (
+					<button
+						className="file"
+						key={index}
+						onClick={() =>
+							copy(
+								`ffmpeg -i "${url}" -bsf:a aac_adtstoasc -vcodec copy -c copy -crf 50 faster-panopto-${new Date().getTime()}.mp4`
+							)
+						}
+					>
+						{cleanFileName(url)}
+					</button>
+				))}
+			</div>
 			<div id="links">
 				<a
 					className="socials"
