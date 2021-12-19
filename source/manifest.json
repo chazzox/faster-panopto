@@ -4,7 +4,7 @@
 
 	"description": "Forked version of Fast panopto designed to work on both firefox and chrome",
 	"homepage_url": "https://github.com/chazzox/faster-panopto/",
-	"background": { "scripts": ["utils/background"] },
+	"background": { "scripts": ["background"] },
 	"permissions": ["activeTab", "tabs", "storage", "webRequest", "<all_urls>"],
 
 	"browser_action": {
