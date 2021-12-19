@@ -1,11 +1,12 @@
 {
-	"$schema": "https://json.schemastore.org/webextension.json",
 	"name": "Faster Panopto",
 	"version": "0.0.3",
+
 	"description": "Forked version of Fast panopto designed to work on both firefox and chrome",
 	"homepage_url": "https://github.com/chazzox/faster-panopto/",
-	"background": { "scripts": ["utils/background"] },
-	"permissions": ["activeTab", "tabs", "storage"],
+	"background": { "scripts": ["background"] },
+	"permissions": ["activeTab", "tabs", "storage", "webRequest", "<all_urls>"],
+
 	"browser_action": {
 		"default_popup": "popup.html",
 		"browser_style": true,
@@ -16,6 +17,8 @@
 	"icons": {
 		"32": "images/enabled.png"
 	},
+
 	"web_accessible_resources": ["images/arrow.png", "images/disabled.png"],
+
 	"manifest_version": 2
 }

@@ -3,15 +3,244 @@
 	<head>
 		<meta charset="UTF-8" />
 		<title>faster-panopto</title>
-		<link rel="preconnect" href="https://fonts.googleapis.com" />
-		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-		<link
-			href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;400;500;600;700&display=swap"
-			rel="stylesheet"
-		/>
+
+		<style>
+			@import url('https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i');
+			/* https://piccalil.li/blog/a-modern-css-reset/ */
+			*,
+			*::before,
+			*::after {
+				box-sizing: border-box;
+			}
+			body,
+			h1,
+			h2,
+			h3,
+			h4,
+			p,
+			figure,
+			blockquote,
+			dl,
+			dd {
+				margin: 0;
+			}
+			ul[role='list'],
+			ol[role='list'] {
+				list-style: none;
+			}
+			html:focus-within {
+				scroll-behavior: smooth;
+			}
+			body {
+				min-height: 100vh;
+				text-rendering: optimizeSpeed;
+				line-height: 1.5;
+			}
+			a:not([class]) {
+				text-decoration-skip-ink: auto;
+			}
+			img,
+			picture {
+				max-width: 100%;
+				display: block;
+			}
+			input,
+			button,
+			textarea,
+			select {
+				font: inherit;
+			}
+			@media (prefers-reduced-motion: reduce) {
+				html:focus-within {
+					scroll-behavior: auto;
+				}
+
+				*,
+				*::before,
+				*::after {
+					animation-duration: 0.01ms !important;
+					animation-iteration-count: 1 !important;
+					transition-duration: 0.01ms !important;
+					scroll-behavior: auto !important;
+				}
+			}
+
+			/* extension styles begin */
+			body,
+			.files {
+				scrollbar-color: rgb(210, 210, 210) rgb(46, 54, 69);
+				scrollbar-width: thin;
+			}
+			html::-webkit-scrollbar-track {
+				background-color: rgb(46, 54, 69);
+			}
+
+			html::-webkit-scrollbar-thumb {
+				background-color: rgb(210, 210, 210);
+			}
+			html::-webkit-scrollbar {
+				width: 9px;
+			}
+			* {
+				font-family: 'Nunito', sans-serif;
+				box-sizing: border-box;
+				color: white;
+			}
+			body {
+				margin: 0;
+				background: linear-gradient(
+					45deg,
+					rgb(13, 25, 51) 40%,
+					rgb(10, 16, 21)
+				);
+				min-height: 110px;
+				min-width: 250px;
+				border: 3px solid white;
+				border-radius: 5px;
+				padding: 15px 5px;
+				width: 300px;
+			}
+
+			#links {
+				display: flex;
+				justify-content: space-around;
+			}
+
+			a.socials {
+				font-size: 14px;
+				font-weight: 600;
+				text-decoration: none;
+
+				border: none;
+				border-radius: 100px;
+				margin: 0px 5px;
+				padding: 3px 10px;
+
+				color: rgba(255, 255, 255, 0.9);
+				background: rgba(98, 103, 111, 0.5);
+				transition: background-color 0.25s ease;
+			}
+
+			a.socials:hover {
+				background: rgba(98, 103, 111, 1);
+				color: white;
+			}
+
+			.container {
+				background: black;
+				margin: 10px;
+				border-radius: 18px;
+				border: 2px solid rgb(65, 67, 78);
+			}
+
+			.container > h2 {
+				padding: 15px;
+				width: 100%;
+				text-align: center;
+			}
+
+			.speed {
+				margin: 12px;
+				border-radius: 9px;
+				overflow: hidden;
+				display: flex;
+				flex-direction: column;
+			}
+			.speed > * {
+				flex: 1;
+			}
+
+			#input {
+				display: flex;
+			}
+
+			#input > input[type='number'] {
+				flex: 1;
+				outline: none;
+				height: 50px;
+				background: rgb(40, 44, 47);
+				border: none;
+				text-align: center;
+				-webkit-appearance: none;
+				-moz-appearance: textfield;
+				font-size: 15px;
+			}
+
+			#input > input[type='number']:focus {
+				outline: none;
+			}
+
+			#buttons {
+				display: flex;
+				flex-direction: column;
+			}
+
+			#buttons > button {
+				flex: 1;
+				border: none;
+				width: 25px;
+				height: 25px;
+				background: url('./images/arrow.png') center center / 9px
+					no-repeat rgba(70, 74, 77, 0.85);
+				cursor: pointer;
+			}
+
+			#buttons > button:hover {
+				background-color: rgb(100, 104, 107);
+			}
+
+			#buttons > button:nth-of-type(1) {
+				transform: rotate(180deg);
+			}
+
+			#apply {
+				color: white;
+				background: rgb(70, 74, 77);
+				border: none;
+				padding: 6px;
+				text-align: center;
+				cursor: pointer;
+			}
+
+			#apply:hover {
+				background: rgb(100, 104, 107);
+			}
+
+			h1 {
+				text-align: center;
+			}
+
+			.files {
+				display: flex;
+				flex-grow: 0;
+				overflow-x: scroll;
+				margin: 15px;
+			}
+			.files > button {
+				color: rgba(255, 255, 255, 0.9);
+				background: rgba(98, 103, 111, 0.5);
+				transition: background-color 0.25s ease;
+				padding: 3px;
+				border: none;
+				border-radius: 5px;
+				margin: 15px;
+				margin-top: 0px;
+				transition: background 0.2s ease;
+				cursor: pointer;
+			}
+			.files > button:hover {
+				background: rgba(98, 103, 111, 1);
+				color: white;
+			}
+			h3 {
+				width: 100%;
+				text-align: center;
+				margin-bottom: 0px;
+			}
+		</style>
 	</head>
 	<body>
-		<div id="app" />
+		<div id="app"></div>
 		<script type="module" src="./index.js"></script>
 	</body>
 </html>
