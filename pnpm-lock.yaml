@@ -3,6 +3,7 @@ lockfileVersion: 5.3
 specifiers:
   '@parcel/config-webextension': ^2.0.0-rc.0
   '@parcel/transformer-image': 2.0.0-rc.0
+  copy-to-clipboard: ^3.3.1
   parcel: ^2.0.0-rc.0
   prettier: ^2.4.1
   react: ^17.0.2
@@ -10,6 +11,7 @@ specifiers:
   webextension-polyfill: ^0.8.0
 
 dependencies:
+  copy-to-clipboard: 3.3.1
   react: 17.0.2
   react-dom: 17.0.2_react@17.0.2
   webextension-polyfill: 0.8.0
@@ -2076,6 +2078,12 @@ packages:
     resolution: {integrity: sha1-Z29us8OZl8LuGsOpJP1hJHSPV40=}
     engines: {node: '>=0.10.0'}
     dev: true
+
+  /copy-to-clipboard/3.3.1:
+    resolution: {integrity: sha512-i13qo6kIHTTpCm8/Wup+0b1mVWETvu2kIMzKoK8FpkLkFxlt0znUAHcMzox+T8sPlqtZXq3CulEjQHsYiGFJUw==}
+    dependencies:
+      toggle-selection: 1.0.6
+    dev: false
 
   /core-js/3.18.1:
     resolution: {integrity: sha512-vJlUi/7YdlCZeL6fXvWNaLUPh/id12WXj3MbkMw5uOyF0PfWPBNOCNbs53YqgrvtujLNlt9JQpruyIKkUZ+PKA==}
@@ -5509,6 +5517,10 @@ packages:
       regex-not: 1.0.2
       safe-regex: 1.1.0
     dev: true
+
+  /toggle-selection/1.0.6:
+    resolution: {integrity: sha1-bkWxJj8gF/oKzH2J14sVuL932jI=}
+    dev: false
 
   /tough-cookie/2.5.0:
     resolution: {integrity: sha512-nlLsUzgm1kfLXSXfRZMc1KLAugd4hqJHDTvc2hDIwS3mZAfMEuMbc03SujMF+GEcpaX/qboeycw6iO8JwVv2+g==}

@@ -24,7 +24,14 @@ This project uses [pnpm](https://pnpm.io/) however packages can be installed wit
 -   The extension code will be located inside a folder called `distribution`
 -   Run `make.bat` if you would like to do all this in a single step
 
+## Downloads
+
+-   Initially my plan was to enable downloads through the use of [wasm compiled versions](https://ffmpegwasm.netlify.app/) of [ffmpeg](https://ffmpeg.org/). This currently cannot happen due to the [`SharedArrayBuffer()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/SharedArrayBuffer) feature only being available in some sites and only on chrome thanks to [spectre](https://meltdownattack.com/).
+
+-   I do not want to write features that only work on one browser, so Im currently not planning on implementing this.
+
+-   However, if you download the [ffmpeg binaries](https://ffmpeg.org/download.html) on your local machine you can still copy paste the file url into a terminal command, the browser extension will provide the full command for you.
+
 ## Future Additions
 
--   Download functionality
 -   Safari compatibility

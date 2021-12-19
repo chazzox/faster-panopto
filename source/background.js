@@ -3,7 +3,7 @@ var tabTimeout;
 
 // setup storage
 browser.runtime.onInstalled.addListener(() => {
-	browser.storage.local.set({ speed: 1, active: false, url: '' });
+	browser.storage.local.set({ speed: 1, active: false, urls: new Set() });
 	checkTabValid();
 });
 
@@ -37,6 +37,7 @@ function checkTabValid() {
 					});
 				}
 			});
+
 		// clearing the timeout
 		tabTimeout = undefined;
 	}, 200);
@@ -44,9 +45,15 @@ function checkTabValid() {
 
 browser.webRequest.onBeforeRequest.addListener(
 	(e) => {
-		e?.originUrl?.includes('panopto') &&
-			e?.url?.includes('.m3u8') &&
-			console.log(e, e.url);
+		// so we can clear out query string
+		const url = new URL(e.url);
+
+		if (e?.originUrl?.includes('panopto') && e?.url?.includes('.m3u8'))
+			browser.storage.local.get(['urls']).then((res) =>
+				browser.storage.local.set({
+					urls: [...res.urls, url.origin + url.pathname]
+				})
+			);
 	},
 	{
 		urls: ['<all_urls>']

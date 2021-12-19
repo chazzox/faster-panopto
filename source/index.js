@@ -1,18 +1,34 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import browser from 'webextension-polyfill';
+import copy from 'copy-to-clipboard';
 
 const App = () => {
 	const [speed, setSpeed] = React.useState('1');
 	const [enabled, setEnabled] = React.useState(true);
+	const [urls, setUrl] = React.useState([]);
+
+	const storageChanged = (e) => {
+		if (e?.urls)
+			setUrl((prevState) => [
+				...new Set([...e.urls.newValue, ...prevState])
+			]);
+	};
 
 	React.useEffect(() => {
 		browser.storage.local
-			.get(['active', 'speed'])
+			.get(['active', 'speed', 'urls'])
 			.then((extensionStorage) => {
 				setSpeed(extensionStorage.speed);
 				setEnabled(extensionStorage.active);
+				setUrl(extensionStorage.urls);
 			});
+
+		browser.storage.onChanged.addListener(storageChanged);
+
+		return () => {
+			browser.storage.onChanged.removeListener(storageChanged);
+		};
 	}, []);
 
 	const setVideoSpeed = () => {
@@ -38,13 +54,18 @@ const App = () => {
 		setSpeed(value);
 	};
 
+	const cleanFileName = (url) => {
+		// some processing
+		return url;
+	};
+
 	return (
 		<>
 			<h1>Faster-Panopto</h1>
 			<div>
 				{enabled ? (
-					<div class="container">
-						<div class="speed">
+					<div className="container">
+						<div className="speed">
 							<div id="input">
 								<input
 									type="number"
@@ -82,22 +103,36 @@ const App = () => {
 						</div>
 					</div>
 				) : (
-					<div class="container">
+					<div className="container">
 						<h2>Not available on this page!</h2>
 					</div>
 				)}
 			</div>
 
+			{urls.map((url, index) => (
+				<button
+					className="file"
+					key={index}
+					onClick={() =>
+						copy(
+							`ffmpeg -i "${url}" -bsf:a aac_adtstoasc -vcodec copy -c copy -crf 50 faster-panopto-${new Date().getTime()}.mp4`
+						)
+					}
+				>
+					{cleanFileName(url)}
+				</button>
+			))}
+
 			<div id="links">
 				<a
-					class="socials"
+					className="socials"
 					target="_blank"
 					href="https://github.com/chazzox/"
 				>
 					Github
 				</a>
 				<a
-					class="socials"
+					className="socials"
 					target="_blank"
 					href="https://twitter.com/_chazzox_"
 				>
