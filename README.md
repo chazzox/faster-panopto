@@ -35,3 +35,4 @@ This project uses [pnpm](https://pnpm.io/) however packages can be installed wit
 ## Future Additions
 
 -   Safari compatibility
+-   fix the chrome `browser.webRequest.onBeforeRequest` issue
