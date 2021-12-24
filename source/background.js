@@ -3,7 +3,7 @@ var tabTimeout;
 
 // setup storage
 browser.runtime.onInstalled.addListener(() => {
-	browser.storage.local.set({ speed: 1, active: false, urls: new Set() });
+	browser.storage.local.set({ speed: 1, active: false, urls: [] });
 	checkTabValid();
 });
 
@@ -43,11 +43,10 @@ function checkTabValid() {
 	}, 200);
 }
 
+// NOT WORKING CHROME
 browser.webRequest.onBeforeRequest.addListener(
 	(e) => {
-		// so we can clear out query string
 		const url = new URL(e.url);
-
 		if (e?.originUrl?.includes('panopto') && e?.url?.includes('.m3u8'))
 			browser.storage.local.get(['urls']).then((res) =>
 				browser.storage.local.set({

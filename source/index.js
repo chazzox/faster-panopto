@@ -122,6 +122,7 @@ const App = () => {
 						{cleanFileName(url)}
 					</button>
 				))}
+				{urls.length == 0 && <h3>None</h3>}
 			</div>
 			<div id="links">
 				<a
