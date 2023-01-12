@@ -4,21 +4,25 @@
 
 	"description": "Forked version of Fast panopto designed to work on both firefox and chrome",
 	"homepage_url": "https://github.com/chazzox/faster-panopto/",
-	"background": { "scripts": ["background"] },
+	"background": { "scripts": ["./background.js"] },
 	"permissions": ["activeTab", "tabs", "storage", "webRequest", "<all_urls>"],
 
 	"browser_action": {
 		"default_popup": "popup.html",
 		"browser_style": true,
 		"default_icon": {
-			"32": "images/enabled.png"
+			"32": "images/disabled.png"
 		}
 	},
 	"icons": {
 		"32": "images/enabled.png"
 	},
 
-	"web_accessible_resources": ["images/arrow.png", "images/disabled.png"],
+	"web_accessible_resources": [
+		"images/arrow.png",
+		"images/disabled.png",
+		"images/enabled.png"
+	],
 
 	"manifest_version": 2
 }

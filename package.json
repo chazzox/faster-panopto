@@ -5,7 +5,7 @@
 	"private": true,
 	"scripts": {
 		"build": "parcel build source/manifest.json --no-content-hash --no-source-maps --dist-dir distribution --no-cache --detailed-report 0",
-		"start": "parcel watch source/manifest.json --dist-dir distribution --no-cache --no-hmr",
+		"dev": "parcel watch source/manifest.json --dist-dir distribution --no-cache --no-hmr",
 		"format": "prettier --write \"**/*.{js,jsx,ts,tsx,json,md}\""
 	},
 	"browserslist": [
@@ -13,18 +13,19 @@
 		"last 1 Firefox version"
 	],
 	"dependencies": {
-		"copy-to-clipboard": "^3.3.1",
-		"react": "^17.0.2",
-		"react-dom": "^17.0.2",
-		"webextension-polyfill": "^0.8.0"
+		"copy-to-clipboard": "^3.3.3",
+		"react": "^18.2.0",
+		"react-dom": "^18.2.0",
+		"webextension-polyfill": "^0.10.0"
 	},
 	"devDependencies": {
-		"@parcel/config-webextension": "^2.0.0-rc.0",
-		"@parcel/transformer-image": "2.0.0-rc.0",
-		"parcel": "^2.0.0-rc.0",
-		"prettier": "^2.4.1"
+		"@parcel/config-webextension": "^2.8.2",
+		"@parcel/transformer-image": "^2.8.2",
+		"parcel": "^2.8.2",
+		"prettier": "^2.8.2"
 	},
 	"webExt": {
 		"sourceDir": "distribution"
 	}
 }
+

@@ -1,5 +1,5 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
+import ReactDOM from 'react-dom/client';
 import browser from 'webextension-polyfill';
 import copy from 'copy-to-clipboard';
 
@@ -107,41 +107,45 @@ const App = () => {
 					</div>
 				)}
 			</div>
-			<h3>Recent files</h3>
-			<div class="files">
-				{urls.map((url, index) => (
-					<button
-						className="file"
-						key={index}
-						onClick={() =>
-							copy(
-								`ffmpeg -i "${url}" -bsf:a aac_adtstoasc -vcodec copy -c copy -crf 50 faster-panopto-${new Date().getTime()}.mp4`
-							)
-						}
-					>
-						{cleanFileName(url)}
-					</button>
-				))}
-				{urls.length == 0 && <h3>None</h3>}
-			</div>
+			{enabled && (
+				<>
+					<h3>Recent files - unstable af lol</h3>
+					<div className="files">
+						{urls.map((url, index) => (
+							<button
+								className="file"
+								key={index}
+								onClick={() =>
+									copy(
+										`ffmpeg -i "${url}" -bsf:a aac_adtstoasc -vcodec copy -c copy -crf 50 faster-panopto-${new Date().getTime()}.mp4`
+									)
+								}
+							>
+								{cleanFileName(url)}
+							</button>
+						))}
+						{urls.length == 0 && <h3>None</h3>}
+					</div>
+				</>
+			)}
 			<div id="links">
 				<a
 					className="socials"
 					target="_blank"
-					href="https://github.com/chazzox/"
+					href="https://github.com/chazzox/faster-panopto"
 				>
 					Github
 				</a>
 				<a
 					className="socials"
 					target="_blank"
-					href="https://twitter.com/_chazzox_"
+					href="https://chazzox.uk"
 				>
-					Twitter
+					Website
 				</a>
 			</div>
 		</>
 	);
 };
 
-ReactDOM.render(<App />, document.getElementById('app'));
+ReactDOM.createRoot(document.getElementById('app')).render(<App />);

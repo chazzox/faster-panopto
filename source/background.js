@@ -21,19 +21,19 @@ function checkTabValid() {
 		browser.tabs
 			.query({
 				active: true,
-				currentWindow: true,
-				url: '*://*.panopto.com/*/Viewer*'
+				currentWindow: true
 			})
-			.then((tabs) => {
-				if (tabs.length > 0) {
+			.then(([first, ..._]) => {
+				// bit of an annoying fix... but url schemes are annoying
+				if (first.url.includes('panopto')) {
 					browser.storage.local.set({ active: true });
 					browser.browserAction.setIcon({
-						path: 'images/enabled.png'
+						path: './images/enabled.png'
 					});
 				} else {
 					browser.storage.local.set({ active: false });
 					browser.browserAction.setIcon({
-						path: 'images/disabled.png'
+						path: './images/disabled.png'
 					});
 				}
 			});
@@ -59,3 +59,4 @@ browser.webRequest.onBeforeRequest.addListener(
 	},
 	['requestBody']
 );
+
